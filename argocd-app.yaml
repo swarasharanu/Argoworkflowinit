@@ -11,7 +11,7 @@ spec:
     path: Argoworkflowinit  # Change this to the folder where the workflow YAML is stored
   destination:
     server: https://kubernetes.default.svc
-    namespace: argo
+    namespace: argo-workflows-lab
   syncPolicy:
     automated:
       prune: true

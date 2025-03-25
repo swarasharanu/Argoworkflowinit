@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
   name: init-container-sample
-  namespace: argo
+  namespace: argo-workflows-lab
   labels:
     workflows.argoproj.io/creator: system-serviceaccount-kube-system-my-argo-workflows-server
 spec:
