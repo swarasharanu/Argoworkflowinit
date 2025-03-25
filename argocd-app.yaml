@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/swarasharanu/Argoworkflowinit.git'  # Change this to your Git repo
     targetRevision: HEAD
-    path: Argoworkflowinit  # Change this to the folder where the workflow YAML is stored
+    path: .  # Change this to the folder where the workflow YAML is stored
   destination:
     server: https://kubernetes.default.svc
     namespace: argo-workflows-lab
