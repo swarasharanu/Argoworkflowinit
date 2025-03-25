@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: init-container-sample-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/swarasharanu/Argoworkflowinit.git'  # Change this to your Git repo
+    targetRevision: HEAD
+    path: Argoworkflowinit  # Change this to the folder where the workflow YAML is stored
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argo
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

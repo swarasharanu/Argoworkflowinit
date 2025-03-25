@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: init-container-sample
+  namespace: argo
+  labels:
+    workflows.argoproj.io/creator: system-serviceaccount-kube-system-my-argo-workflows-server
+spec:
+  entrypoint: main-task
+  templates:
+    - name: main-task
+      container:
+        image: alpine
+        command: ["sh", "-c"]
+        args:
+          - |
+            echo "Hello from the main container!"
+            echo "Listing files in /workspace:"
+            ls -l /workspace
+        workingDir: /workspace
+        volumeMounts:
+          - name: workspace-volume
+            mountPath: /workspace
+      initContainers:
+        - name: init-setup
+          image: alpine
+          command: ["sh", "-c"]
+          args:
+            - |
+              echo "Initializing workspace..."
+              mkdir -p /workspace/data
+              echo "Sample file" > /workspace/data/sample.txt
+              echo "Init container completed!"
+          workingDir: /workspace
+          mirrorVolumeMounts: true
+  volumes:
+    - name: workspace-volume
+      emptyDir: {}
