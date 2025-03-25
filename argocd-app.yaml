@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: init-container-sample-app
-  namespace: argocd
+  namespace: argo
 spec:
   project: default
   source:
